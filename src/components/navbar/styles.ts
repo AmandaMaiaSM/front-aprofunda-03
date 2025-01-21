@@ -74,20 +74,25 @@ export const LogoutButton = styled.button`
   &:hover {
     color: #d8bfd8;
   }
+
 `;
 
 export const LogintButton = styled.button`
   background-color: #d1b3ff;
   padding: 8px;
   border-radius: 16px;
+  border: none;
   color: #4b204b;
   font-size: 18px;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 5px;
-
+  width: 200px;
+  justify-content: center;
+  font-weight:bold;
   &:hover {
     color: #d02090;
   }
+    
 `;

@@ -46,11 +46,13 @@ const Dashboard = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
+
         menuRef.current && !menuRef.current.contains(event.target as Node) &&
         buttonRef.current && !buttonRef.current.contains(event.target as Node)
       ) {
         // Fecha todos os menus
         setMenusAbertos({}); 
+        console.log("fora");
       }
     };
 
