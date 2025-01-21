@@ -218,3 +218,48 @@ export const SuccessMessage = styled.p`
   font-weight: bold;
   text-align: center;
 `;
+
+
+//nova ed
+// Estilos para o container do menu dropdown
+export const DropdownMenu = styled.div`
+  position: absolute;
+  top: 100%; /* Ajusta a posição em relação ao botão */
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 1000; 
+  width: 200px; 
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  margin-top: 5px; 
+  max-height: 250px; 
+  overflow-y: auto; 
+`;
+
+export const DropdownButton = styled.button`
+  display: block;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: #333;
+  font-size: 1rem;
+  width: 100%; 
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0; 
+  }
+`;
+
+
+
+
+//fim ed 
