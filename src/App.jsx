@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./services/firebase";
 import "./index.css";
+import Arquivado from "./pages/Arquivado"
 
 const App = () => {
   const [user] = useAuthState(auth);
@@ -21,6 +22,7 @@ const App = () => {
           element={user ? <CriarDespesas /> : <Home />}
         />
         <Route path="/dashboard" element={user ? <Dashboard /> : <Home />} />
+        <Route path="/arquivados" element={<Arquivado/>} />
       </Routes>
       <Footer />
     </BrowserRouter>
