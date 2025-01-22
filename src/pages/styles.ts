@@ -64,6 +64,20 @@ export const Button = styled.button`
   }
 `;
 
+export const ButtonArquivar = styled.button`
+  background-color: transparent;
+  border: 0.6px solid gray;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color:rgba(160, 32, 160, 0.27);
+  }
+`;
+
 export const TableContainer = styled.div`
   display: flex;
   flex-direction: column;

@@ -5,6 +5,9 @@ import { auth } from "../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import http from "../http";
 
+import img_arquivar from '../assets/arquivar.png'
+import img_lixo from '../assets/bin.png'
+
 type Despesa = {
   id: string;
   descricao: string;
@@ -18,6 +21,9 @@ type Despesa = {
 
 const Dashboard = () => {
   const [despesas, setDespesas] = useState([] as Despesa[]);
+  const [entradas, setEntradas] = useState(0.0);
+  const [saidas, setSaidas] = useState(0.0);
+  const [saldo, setSaldo] = useState(0.0);
   const [user] = useAuthState(auth);
 
   // Busca as despesas do usuário
@@ -25,7 +31,13 @@ const Dashboard = () => {
     const fetchDespesas = async () => {
       try {
         const response = await http.get(`/despesas/${user?.uid}`);
-        setDespesas(response.data);
+
+      
+        const despesasDesarquivadas = response.data.filter((d: Despesa) => {
+          return d.arquivado === false
+        }) 
+
+        setDespesas(despesasDesarquivadas);
       } catch (error) {
         console.error("Erro ao buscar despesas:", error);
       }
@@ -34,41 +46,59 @@ const Dashboard = () => {
   }, [user]);
 
   // Calcula os totais de entradas, saídas e saldo sempre que "despesas" mudar
-  const calcularTotais = () => {
-
-    const despesas_desarquivadas = despesas.filter((d) => {
-      return d.arquivado === false
-    })
-    if (despesas_desarquivadas.length === 0) {
-      return { entradas: 0, saidas: 0, saldo: 0 };
+  useEffect(() =>{
+    console.log(despesas)
+    
+    if (despesas.length == 0) {
+      setEntradas(0.0)
+      setSaidas(0.0)
+      setSaldo(0.0)
+    } else {
+      setEntradas(despesas
+        .filter((d) => d.tipo === "entrada" && d.valor)
+        .reduce((acc, d) => acc + d.valor, 0)
+      )
+  
+      setSaidas(despesas
+        .filter((d) => d.tipo === "saída" && d.valor)
+        .reduce((acc, d) => acc + d.valor, 0)
+      )
+  
+      setSaldo(entradas - saidas)
     }
+  }, [despesas]);
 
-    const entradas = despesas_desarquivadas
-      .filter((d) => d.tipo === "entrada" && d.valor)
-      .reduce((acc, d) => acc + d.valor, 0);
-
-    const saidas = despesas_desarquivadas
-      .filter((d) => d.tipo === "saída" && d.valor)
-      .reduce((acc, d) => acc + d.valor, 0);
-
-    return { entradas, saidas, saldo: entradas - saidas };
-  };
-
-  const { entradas, saidas, saldo } = calcularTotais();
+  
 
   // Função para arquivar despesa
   const arquivarFinanca = async (id: string) => {
     try {
       await http.patch(`/despesas/arquivar/${id}`);
-      setDespesas((prev) =>
-        prev.map((despesa) =>
-          despesa.id === id ? { ...despesa, arquivado: true } : despesa
-        )
-      );
+      setDespesas((prev) => prev.filter((despesa) => {
+        return despesa.id !== id
+      }));
     } catch (error) {
       console.error("Erro ao arquivar despesa:", error);
     }
   };
+
+  const deletarFinanca = async (id: string) => {
+    const confirmacao = window.confirm("Você tem certeza que deseja deletar essa despesa?");
+    
+    if(confirmacao === true){
+      try {
+        await http.delete(`/despesas/${id}`);
+        setDespesas((prev) => prev.filter((despesa) => {
+          return despesa.id !== id
+        }));
+      
+      } catch (error) {
+        console.error("Erro ao deletar despesa:", error);
+      }
+
+    }
+  }; 
+
 
   return (
     <S.TableContainer>
@@ -104,7 +134,6 @@ const Dashboard = () => {
         </thead>
         <tbody>
           {despesas.map((despesa) => {
-            if (!despesa.arquivado) {
               return (
                 <tr key={despesa.id}>
                   <td>{despesa.descricao}</td>
@@ -112,14 +141,18 @@ const Dashboard = () => {
                   <td>R$ {despesa.valor.toFixed(2)}</td>
                   <td>{despesa.tipo}</td>
                   <td>{despesa.data}</td>
-                  <td>
+                  <td style={{display: "flex", gap:"5px"}}>
                     {/* Botão de arquivar */}
-                    <button onClick={() => arquivarFinanca(despesa.id)}>Arquivar</button>
+                    <S.ButtonArquivar title="Arquivar" onClick={() => arquivarFinanca(despesa.id)}>
+                      <img width='20px' src={img_arquivar} alt="Arquivar"/>
+                    </S.ButtonArquivar>
+                    {/* Botão de arquivar */}
+                    <S.ButtonArquivar title="Deletar" onClick={() => deletarFinanca(despesa.id)}>
+                      <img width='20px' src={img_lixo} alt="Deletar"/>
+                    </S.ButtonArquivar>
                   </td>
                 </tr>
               );
-            }
-            return null;
           })}
         </tbody>
       </S.StyledTable>

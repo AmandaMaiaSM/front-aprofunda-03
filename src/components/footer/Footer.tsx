@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyledFooter } from './styles'
-
+import { StyledFooter } from './styles';
 
 const Footer = () => {
   return (
     <StyledFooter>
-      Desenvolvido com 🤍 por Amanda Silva!
+      PretaLab 🤍 Aprofunda<br /> Aprimorando no técnico em Backend!
     </StyledFooter>
   );
 };

@@ -6,6 +6,8 @@ import ChatGemini from "../components/chat-gemini/ChatGemini";
 import { auth } from "../services/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import http from "../http";
+import img_desarquivar from '../assets/desarquivar.png'
+
 
 type Despesa = {
     id: string;
@@ -22,28 +24,33 @@ type Despesa = {
     const [despesas, setDespesas] = useState([] as Despesa[]);
     const [user] = useAuthState(auth);
   
-    useEffect(() => {
-      const fetchDespesas = async () => {
-        try {
-          const response = await http.get(`/despesas/${user?.uid}`);
-          setDespesas(response.data);
-        } catch (error) {
-          console.error("Erro ao buscar despesas:", error);
-        }
-      };
-      fetchDespesas();
-    }, [user]);
+    // Busca as despesas do usuário
+  useEffect(() => {
+    const fetchDespesas = async () => {
+      try {
+        const response = await http.get(`/despesas/${user?.uid}`);
+
+      
+        const despesasDesarquivadas = response.data.filter((d: Despesa) => {
+          return d.arquivado === true
+        }) 
+
+        setDespesas(despesasDesarquivadas);
+      } catch (error) {
+        console.error("Erro ao buscar despesas:", error);
+      }
+    };
+    fetchDespesas();
+  }, [user]);
+    
   
     // Função para arquivar/desarquivar despesa
     const desarquivarFinanca = async (id:string)=> {
       try {
         const response = await http.patch(`/despesas/desarquivar/${id}`);
         // Atualiza a lista de despesas após arquivar
-        setDespesas((prev) => prev.map((despesa) => {
-          if (despesa.id === id) {
-            return { ...despesa, arquivado: false }; // Atualiza o status localmente
-          }
-          return despesa;
+        setDespesas((prev) => prev.filter((despesa) => {
+          return despesa.id !== id
         }));
       } catch (error) {
         console.error("Erro ao desarquivar despesa:", error);
@@ -68,7 +75,6 @@ type Despesa = {
           </thead>
           <tbody>
             {despesas.map((despesa) => {
-              if (despesa.arquivado === true) {
                 return (
                   <tr key={despesa.id}>
                     <td>{despesa.descricao}</td>
@@ -77,15 +83,14 @@ type Despesa = {
                     <td>{despesa.tipo}</td>
                     <td>{despesa.data}</td>
                     <td>
-                      {/* Botão de arquivar */}
-                      <button onClick={() => desarquivarFinanca(despesa.id)}>
-                        Desarquivar
-                      </button>
+                      {/* Botão de desarquivar */}
+          
+                    <S.ButtonArquivar title="Desarquivar" onClick={() => desarquivarFinanca(despesa.id)}>
+                      <img width='20px' src={img_desarquivar} alt="Arquivar"/>
+                    </S.ButtonArquivar>
                     </td>
                   </tr>
                 );
-              }
-              return null;
             })}
           </tbody>
         </S.StyledTable>
