@@ -98,8 +98,7 @@ const Dashboard = () => {
 
     }
   }; 
-
-
+  
   return (
     <S.TableContainer>
       <S.Title>Dashboard de Finanças</S.Title>
