@@ -19,7 +19,7 @@ const Home = () => {
         }}
       >
         <S.Subtitle style={{ textAlign: "justify" }}>
-          Na <strong>Gemini</strong>, ajudamos você a navegar pelas suas finanças com clareza e controle. Nosso objetivo é oferecer a você uma visão clara do seu dinheiro e das suas possibilidades.
+          Com a <strong>Gemini</strong>, ajudamos você a navegar pelas suas finanças com clareza e controle. Nosso objetivo é oferecer a você uma visão clara do seu dinheiro e das suas possibilidades.
         </S.Subtitle>
         <S.Subtitle style={{ textAlign: "justify" }}>
           Tome decisões inteligentes, planeje seu futuro com confiança e atinja seus objetivos financeiros com tranquilidade. Nosso compromisso é tornar sua experiência simples e eficiente.
