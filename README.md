@@ -142,3 +142,46 @@ Estrutura de Arquivos
 
 ---
 ---
+
+# Demosntração do front 
+
+## tela 01: O home com long 
+![image](https://github.com/user-attachments/assets/00d23bda-8d3f-4368-bb53-2217ee575b44)
+![image](https://github.com/user-attachments/assets/1ee3d48c-7cbb-440c-89a2-c32e2ef99390)
+
+## tela 02: Mostrando quatro opções (Home, criar despesas, dashboard e arquivados)
+![image](https://github.com/user-attachments/assets/233dbab0-bae3-4625-8521-f553a3b529a8)
+
+## tela 03:  criar despesas 
+![image](https://github.com/user-attachments/assets/3250e2ab-5942-4ab0-b763-1ef57107c8cb)
+
+## tela 04: lista de despesas de entradas e saida 
+![image](https://github.com/user-attachments/assets/3ac2a7c6-2aee-472e-9a8a-f2d742ff1e96)
+
+![image](https://github.com/user-attachments/assets/284fb5c0-fd4b-4ce7-bc80-016032a0e77e)
+ ## ao arquivar  lista fica assimm:
+ ![image](https://github.com/user-attachments/assets/293bdc58-2ccc-4403-9313-602a7fa1c11d)
+
+ ## tela 05: Despesas arquivadas 
+ ![image](https://github.com/user-attachments/assets/9bc04d5a-8042-4e62-9f19-78093d82aca3)
+
+  ## desarquivar:
+  ![image](https://github.com/user-attachments/assets/df79dae6-5fa4-45a9-8f3a-4907ae56220d)
+
+  ## lista de aquivados 
+  ![image](https://github.com/user-attachments/assets/7c3e28eb-239c-41a4-893d-0f0b440968ee)
+
+## tela 06: Excluir despesa:
+![image](https://github.com/user-attachments/assets/46deca6f-2c3f-453d-93c1-0c38b3a21d03)
+  ## mostrando que foi exluido:
+  ![image](https://github.com/user-attachments/assets/425c9b26-8012-443d-8359-7639dbfee3c3)
+
+
+
+
+
+
+
+
+
+
