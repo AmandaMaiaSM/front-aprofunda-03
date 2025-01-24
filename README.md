@@ -1,3 +1,16 @@
+---
+# Projeto Final - Personalização do Curso Back-End PretaLab
+
+Neste projeto final, nós, alunas do PretaLab, fomos desafiadas a personalizar o projeto de conclusão do curso de Back-End. A minha personalização incluiu a implementação das funcionalidades de arquivar e desarquivar despesas. Além disso, aceitei o desafio de adicionar mais uma funcionalidade: a exclusão de despesas.
+
+Para enriquecer ainda mais o aprendizado, sob a orientação da mentora Amanda Silva, também montamos o front-end do projeto. Isso nos permitiu expandir nosso conhecimento além do desenvolvimento back-end, aprendendo conceitos básicos de CSS e React. Dessa forma, não apenas desenvolvemos um back-end robusto e funcional, mas também criamos uma interface visual para interagir com as funcionalidades da aplicação.
+
+Essa etapa foi uma oportunidade incrível para consolidar todo o conhecimento adquirido ao longo dos cinco meses de formação, aplicando os conceitos de forma prática e integrando tecnologias de front-end e back-end para criar uma solução completa e personalizada.
+---
+link da aplicaçao: https://front-aprofunda-03.vercel.app/
+---
+---
+
 # Controle de Gastos com Gemini - Aprofunda Pretalab
 
 Uma plataforma intuitiva para você controlar seus gastos e alcançar suas metas financeiras. Com o [Nome da sua aplicação], você pode:
@@ -124,3 +137,6 @@ Estrutura de Arquivos
    Dado que uma transação foi adicionada com sucesso,
    Quando o sistema armazena o valor e os detalhes no banco de dados,
    Então esses dados devem ser persistidos no histórico, permitindo recuperação futura mesmo após logout ou atualização do sistema.
+
+---
+---
